@@ -44,7 +44,7 @@
            </li>
             @endforeach
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">İletişim</a>
+            <a class="nav-link" href="{{route('contact')}}">İletişim</a>
           </li>
         </ul>
       </div>

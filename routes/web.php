@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','Front\Homepage@index')->name('homepage'); /* definition for links */
 Route::get('sayfa','Front\Homepage@index');
 Route::get('/iletisim','Front\Homepage@contact')->name('contact'); 
+Route::post('/iletisim','Front\Homepage@contactPost')->name('contact.post');
 
 Route::get('/kategori/{category}','front\homepage@category')->name('category');
 Route::get('/{category}/{slug}','front\homepage@single')->name('single');
