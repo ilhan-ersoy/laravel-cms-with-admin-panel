@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Validator;
 
 //Models
 use App\model\Article;
@@ -57,9 +57,17 @@ class Homepage extends Controller{
     public function contactPost(Request $request)
     { 
       //Contact database'ye kayıt işlemleri
-      
-      
+      $rules = [
+        'name'=>'required|min:5',
+        'email'=>'required|email',
+        'topic' =>'required',
+        'message'=>'required|min:10'
+      ];
 
+      $validate = Validator::make($request->post(),$rules);
+      if($validate->fails()){
+        return redirect()->route('contact')->withErrors($validate)->withInput();
+      }
       $contact = new Contact;
       $contact->name = $request->name;
       $contact->email = $request->email;

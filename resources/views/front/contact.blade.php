@@ -9,6 +9,15 @@
             {{session('success')}}
           </div>
           @endif
+          @if($errors->any())
+          <div class="alert alert-danger" role="alert">
+            <ul>
+              @foreach($errors->all() as $error)
+              <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
         <p>Bizimle İletişime Geçebilirsiniz</p>
         
         <form method="post" action = "{{route('contact.post')}}">
@@ -16,14 +25,14 @@
           <div class="control-group">
             <div class="form-group ">
               <label>Ad Soyad</label>
-              <input type="text" class="form-control" placeholder="Ad Soyad" name="name" required >
+              <input type="text" class="form-control" value="{{old('name')}}" placeholder="Ad Soyad" name="name" required >
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="control-group">
             <div class="form-group  ">
               <label>Email Adresi</label>
-              <input type="email" class="form-control" placeholder="Email Adresiniz" name="email" required >
+              <input type="email" class="form-control" value="{{old('email')}}" placeholder="Email Adresiniz" name="email" required >
               <p class="help-block text-danger"></p>
             </div>
           </div>
@@ -31,17 +40,17 @@
             <div class="form-group">
               <label>Konu</label>
               <select class="form-control" name="topic">
-              	<option>Bilgi</option>
-              	<option>istek</option>
-              	<option>Genel</option>
+              	<option @if(old('topic') == "Bilgi") selected @endif >Bilgi</option>
+              	<option @if(old('topic') == "İstek") selected @endif >İstek</option>
+              	<option @if(old('topic') == "Genel") selected @endif >Genel</option>
               </select>
             </div>
           </div>
           <div class="control-group">
             <div class="form-group">
               <label>Mesajınız</label>
-              <textarea rows="5" class="form-control" placeholder="Mesajınız" name="message" required></textarea>
-              <p class="help-block text-danger"></p>
+              <textarea rows="5" class="form-control" placeholder="Mesajınız" name="message" required>{{old('message')}}</textarea>
+              
             </div>
           </div>
           <br>
