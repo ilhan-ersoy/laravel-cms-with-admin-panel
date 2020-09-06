@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
  */
 Route::get('/admin/panel','Back\Dashboard@index')->name('admin.dashboard');
-
+Route::get('/admin/giris','Back\Auth@login')->name('admin.login');/*auth işlemeri için yeni controller oluşturuldu*/
 
 
 
